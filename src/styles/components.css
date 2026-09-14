@@ -47,6 +47,28 @@
   margin: 0;
 }
 
+.panel__title--link {
+  display: block;
+  color: var(--text-primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.panel__title--link:hover {
+  color: var(--accent);
+}
+
+.panel__title--link:hover .history-panel__export-hint {
+  text-decoration: underline;
+}
+
+.history-panel__export-hint {
+  font-family: var(--font-ui);
+  font-size: var(--font-size-small);
+  font-weight: normal;
+  color: var(--text-muted);
+}
+
 .panel__description {
   color: var(--text-secondary);
   font-size: var(--font-size-small);
@@ -213,7 +235,9 @@
   border: var(--border-width) solid var(--border-color-light);
   padding: var(--space-2);
   white-space: pre-wrap;
-  word-break: break-word;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  overflow-x: auto;
 }
 
 .assumptions-list {
@@ -221,6 +245,7 @@
   padding-left: 18px;
   color: var(--text-secondary);
   font-size: var(--font-size-small);
+  overflow-wrap: break-word;
 }
 
 /* --- Truth table --- */

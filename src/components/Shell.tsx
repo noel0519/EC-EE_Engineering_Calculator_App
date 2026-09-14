@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import type { CalculationOutput } from '@/core/types';
 import { CATEGORIES, findCalculator } from '@/calculators/registry';
 import { useStore } from '@/state/store';
@@ -12,6 +12,12 @@ import { StatusBar } from './StatusBar';
 export function Shell() {
   const { state } = useStore();
   const [output, setOutput] = useState<CalculationOutput | null>(null);
+  const prevCalcId = useRef(state.selectedCalculatorId);
+
+  if (prevCalcId.current !== state.selectedCalculatorId) {
+    prevCalcId.current = state.selectedCalculatorId;
+    if (output !== null) setOutput(null);
+  }
 
   const calculator = findCalculator(state.selectedCalculatorId);
   const categoryLabel = CATEGORIES.find((c) => c.id === state.selectedCategory)?.label ?? '';
@@ -33,7 +39,7 @@ export function Shell() {
       <div className="workspace">
         <div className="workspace__main">
           {calculator ? (
-            <CalculatorWorkspace calculator={calculator} onResult={setOutput} />
+            <CalculatorWorkspace key={calculator.id} calculator={calculator} onResult={setOutput} />
           ) : (
             <div className="panel">
               <div className="panel__body">

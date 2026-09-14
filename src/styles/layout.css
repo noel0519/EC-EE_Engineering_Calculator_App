@@ -83,6 +83,7 @@
 
 .workspace__aux {
   min-width: 0;
+  overflow: hidden;
 }
 
 /* --- History panel --- */

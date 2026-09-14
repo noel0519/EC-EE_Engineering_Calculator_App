@@ -21,9 +21,9 @@ export function HistoryPanel() {
   return (
     <div className="history-panel">
       <div className="panel__header" style={{ display: 'flex', alignItems: 'center' }}>
-        <h2 className="panel__title" style={{ flex: 1 }}>
-          Calculation Log
-        </h2>
+        <a className="panel__title panel__title--link" style={{ flex: 1 }} href="#/export" title="View full log and export as CSV or PDF">
+          Calculation Log <span className="history-panel__export-hint">— view &amp; export ↗</span>
+        </a>
         <button className="icon-btn" onClick={() => dispatch({ type: 'CLEAR_HISTORY' })} disabled={state.history.length === 0}>
           Clear History
         </button>
