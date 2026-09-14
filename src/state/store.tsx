@@ -37,9 +37,10 @@ function defaultFieldValues(calculatorId: string): FieldValues {
 }
 
 function loadInitialState(): PersistedState {
+  const initialCategory = CATEGORIES[0].id;
   const fallback: PersistedState = {
-    selectedCategory: CATEGORIES[0].id,
-    selectedCalculatorId: CALCULATORS[0]?.id ?? '',
+    selectedCategory: initialCategory,
+    selectedCalculatorId: CALCULATORS.find((c) => c.category === initialCategory)?.id ?? '',
     fieldValuesByCalculator: {},
     unitSelectionsByCalculator: {},
     history: [],
@@ -49,9 +50,20 @@ function loadInitialState(): PersistedState {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return fallback;
     const parsed = JSON.parse(raw) as Partial<PersistedState>;
+
+    const selectedCategory = parsed.selectedCategory ?? fallback.selectedCategory;
+    const persistedCalculator = parsed.selectedCalculatorId ? findCalculator(parsed.selectedCalculatorId) : undefined;
+    // Guard against stale persisted state (e.g. from before a calculator was
+    // moved between categories) where the calculator doesn't actually belong
+    // to the persisted category — fall back to that category's first calculator.
+    const selectedCalculatorId =
+      persistedCalculator?.category === selectedCategory
+        ? persistedCalculator.id
+        : CALCULATORS.find((c) => c.category === selectedCategory)?.id ?? fallback.selectedCalculatorId;
+
     return {
-      selectedCategory: parsed.selectedCategory ?? fallback.selectedCategory,
-      selectedCalculatorId: parsed.selectedCalculatorId ?? fallback.selectedCalculatorId,
+      selectedCategory,
+      selectedCalculatorId,
       fieldValuesByCalculator: parsed.fieldValuesByCalculator ?? {},
       unitSelectionsByCalculator: parsed.unitSelectionsByCalculator ?? {},
       history: parsed.history ?? [],

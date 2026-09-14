@@ -1,5 +1,16 @@
 import type { CalculatorDefinition, Category } from '@/core/types';
 
+import { coulombsLaw } from './emf/coulombsLaw';
+import { electricFieldPotential } from './emf/electricFieldPotential';
+import { parallelPlateCapacitance } from './emf/parallelPlateCapacitance';
+import { magneticForce } from './emf/magneticForce';
+import { magneticField } from './emf/magneticField';
+
+import { switchingThreshold } from './cmos/switchingThreshold';
+import { cmosPower } from './cmos/cmosPower';
+import { propagationDelay } from './cmos/propagationDelay';
+import { switchingEnergy } from './cmos/switchingEnergy';
+
 import { ohmsLaw } from './network/ohmsLaw';
 import { seriesParallelResistance } from './network/seriesParallelResistance';
 import { voltageDivider } from './network/voltageDivider';
@@ -24,17 +35,19 @@ import { quadraticSolver } from './general/quadraticSolver';
 import { booleanTruthTable } from './logic/booleanTruthTable';
 import { kmapSimplifier } from './logic/kmapSimplifier';
 
+import { dcPower } from './power/dcPower';
+import { acPower } from './power/acPower';
+import { powerDbConverter } from './power/powerDbConverter';
+import { threePhasePower } from './power/threePhasePower';
+import { efficiency } from './power/efficiency';
+import { energyFromPower } from './power/energyFromPower';
+
 export interface CategoryMeta {
   id: Category;
   label: string;
 }
 
-/**
- * Category order and labels. Categories with no calculators yet (EMF, CMOS,
- * Power) are declared so the shell's navigation and "coming soon" placeholder
- * can reference them without any calculator-specific code — this is Phase 4
- * expansion surface per the master prompt's phased build plan.
- */
+/** Category order and labels, read directly by the shell's navigation. */
 export const CATEGORIES: CategoryMeta[] = [
   { id: 'network', label: 'Network Calc' },
   { id: 'emf', label: 'EMF Calc' },
@@ -48,6 +61,15 @@ export const CATEGORIES: CategoryMeta[] = [
 ];
 
 export const CALCULATORS: CalculatorDefinition[] = [
+  coulombsLaw,
+  electricFieldPotential,
+  parallelPlateCapacitance,
+  magneticForce,
+  magneticField,
+  switchingThreshold,
+  cmosPower,
+  propagationDelay,
+  switchingEnergy,
   ohmsLaw,
   seriesParallelResistance,
   voltageDivider,
@@ -66,6 +88,12 @@ export const CALCULATORS: CalculatorDefinition[] = [
   quadraticSolver,
   booleanTruthTable,
   kmapSimplifier,
+  dcPower,
+  acPower,
+  powerDbConverter,
+  threePhasePower,
+  efficiency,
+  energyFromPower,
 ];
 
 export function calculatorsByCategory(category: Category): CalculatorDefinition[] {
