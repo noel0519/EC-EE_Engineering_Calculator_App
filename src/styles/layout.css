@@ -1,0 +1,118 @@
+.shell {
+  display: grid;
+  grid-template-rows: auto auto auto 1fr auto auto;
+  height: 100vh;
+  min-height: 0;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+/* Grid/flex items default to a content-based min-width, which lets wide
+   nowrap content (e.g. the history table) silently stretch the whole shell
+   wider than the viewport. Force every direct grid row to shrink instead. */
+.shell > * {
+  min-width: 0;
+}
+
+/* --- Header --- */
+.header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--panel-bg);
+  border-bottom: var(--border-width) solid var(--border-color-strong);
+}
+
+.header__title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-title);
+  font-weight: normal;
+  letter-spacing: 0.2px;
+}
+
+.header__breadcrumb {
+  color: var(--text-secondary);
+  font-size: var(--font-size-small);
+}
+
+.header__spacer {
+  flex: 1;
+}
+
+/* --- Category nav --- */
+.category-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  background: var(--panel-bg-recessed);
+  border-bottom: var(--border-width) solid var(--border-color);
+  padding: 0 var(--space-2);
+}
+
+/* --- Calculator nav (secondary strip) --- */
+.calculator-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  background: var(--panel-bg);
+  border-bottom: var(--border-width) solid var(--border-color);
+  padding: 0 var(--space-2);
+  min-height: 28px;
+}
+
+/* --- Main workspace: calculator + auxiliary panel --- */
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(220px, 1fr);
+  gap: var(--space-2);
+  padding: var(--space-2);
+  overflow: auto;
+  min-height: 0;
+}
+
+@media (max-width: 860px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+}
+
+.workspace__main {
+  min-width: 0;
+}
+
+.workspace__aux {
+  min-width: 0;
+}
+
+/* --- History panel --- */
+.history-panel {
+  border-top: var(--border-width) solid var(--border-color-strong);
+  background: var(--panel-bg);
+  max-height: 220px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.history-panel__body {
+  overflow: auto;
+  min-height: 0;
+  min-width: 0;
+}
+
+/* --- Status bar --- */
+.status-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 2px var(--space-3);
+  background: var(--panel-bg-recessed);
+  border-top: var(--border-width) solid var(--border-color);
+  font-size: var(--font-size-small);
+  color: var(--text-secondary);
+}
+
+.status-bar__spacer {
+  flex: 1;
+}

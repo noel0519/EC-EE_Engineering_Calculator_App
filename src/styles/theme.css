@@ -1,0 +1,97 @@
+/* Design tokens for the "engineering utility, circa 2003-2008" aesthetic:
+   rectangular, thin-bordered, muted, information-dense. Deliberately not a
+   contemporary SaaS palette — see engineering_calculator_app_prompt section 2. */
+
+:root {
+  /* Surfaces */
+  --app-bg: #e9e7e2;
+  --panel-bg: #f1efe9;
+  --panel-bg-recessed: #dfdcd4;
+  --field-bg: #fdfdfb;
+  --field-bg-disabled: #e6e4dd;
+
+  /* Borders */
+  --border-color: #9a9690;
+  --border-color-strong: #6f6b64;
+  --border-color-light: #c9c6bd;
+
+  /* Text */
+  --text-primary: #262420;
+  --text-secondary: #5c584f;
+  --text-muted: #8a857b;
+  --text-on-accent: #f4f4f2;
+
+  /* Accent / state */
+  --accent: #3d5a73;
+  --accent-hover: #33495e;
+  --accent-bg: #dbe4ea;
+  --warning: #8a6a1f;
+  --warning-bg: #f1e4c4;
+  --error: #8f2f2a;
+  --error-bg: #f2dcd9;
+  --success: #38602f;
+  --success-bg: #dfe9db;
+
+  /* Typography */
+  --font-heading: Georgia, 'Palatino Linotype', Palatino, serif;
+  --font-ui: 'Segoe UI', Tahoma, Verdana, Arial, sans-serif;
+  --font-mono: 'Consolas', 'Courier New', monospace;
+
+  --font-size-base: 13px;
+  --font-size-small: 11px;
+  --font-size-heading: 15px;
+  --font-size-title: 18px;
+
+  /* Geometry */
+  --radius: 2px;
+  --radius-none: 0;
+  --border-width: 1px;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--app-bg);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: var(--font-size-base);
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--accent-bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
