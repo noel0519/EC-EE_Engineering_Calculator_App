@@ -43,11 +43,10 @@ npm run build     # type-check and produce a production build
 
 ## Status
 
-Implements the Phase 1-3 scope from the project brief: application shell,
-reusable calculator infrastructure, and 18 calculators across Network,
-Analog, Communication, Antenna, General, and Logic (KMap + Boolean).
-EMF, CMOS, and Power categories are wired into the navigation as
-placeholders ("coming soon") — the intended Phase 4 expansion surface.
+All nine categories from the project brief are implemented: Network, EMF,
+CMOS, Communication, Analog, Antenna, KMap + Boolean, General, and Power —
+33 calculators in total, each with its own unit/normal/boundary/invalid
+test cases.
 
 ## Known assumptions / simplifications
 
